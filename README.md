@@ -1,6 +1,6 @@
 # musayi
 
-A new Flutter project.
+A new Flutter project that help us get donors easily.
 
 ## Getting Started
 
