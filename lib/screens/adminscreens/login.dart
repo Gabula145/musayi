@@ -40,10 +40,6 @@ class _LoginState extends State<Login> {
                 ),
               ),
               SizedBox(height: size.height * 0.03),
-              // SvgPicture.asset(
-              //   "images/login.svg",
-              //   height: size.height * 0.35,
-              // ),
               Icon(
                 Icons.verified_user_rounded,
                 size: size.height * 0.35,
@@ -80,37 +76,5 @@ class _LoginState extends State<Login> {
       )),
     );
   }
-
-  // Widget forgotYourPasswordUI() {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(top: 8, right: 16, bottom: 8, left: 16),
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.end,
-  //       crossAxisAlignment: CrossAxisAlignment.center,
-  //       children: <Widget>[
-  //         InkWell(
-  //           borderRadius: const BorderRadius.all(Radius.circular(8)),
-  //           onTap: () {
-  //             Navigator.of(context).pushAndRemoveUntil(
-  //                 MaterialPageRoute(
-  //                     builder: (context) => const ForgotPasswordScreen()),
-  //                 (route) => true);
-  //           },
-  //           child: const Padding(
-  //             padding: EdgeInsets.all(8.0),
-  //             child: Text(
-  //               "Forgot yourPassword?",
-  //               style: TextStyle(
-  //                 fontSize: 12,
-  //                 fontWeight: FontWeight.w500,
-  //                 color: Colors.black,
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 
 }

@@ -251,82 +251,8 @@ class _HomeState extends State<Home> {
                     );
                   },
                 ),
-
-          // StreamBuilder<QuerySnapshot>(
-          //     stream: donorStream,
-          //     builder: (BuildContext context,
-          //         AsyncSnapshot<QuerySnapshot> snapshot) {
-          //       if (snapshot.hasError) {
-          //         return const Text('Something went wrong');
-          //       }
-          //       if (snapshot.connectionState == ConnectionState.waiting) {
-          //         return const Center(child: Text("Loading"));
-          //       }
-          //       return Column(
-          //         children:
-          //             snapshot.data!.docs.map((DocumentSnapshot document) {
-          //           Map<String, dynamic> data =
-          //               document.data()! as Map<String, dynamic>;
-          //           return Padding(
-          //               padding: const EdgeInsets.only(top: 10, bottom: 10),
-          //               child: ShowDonors(
-          //                   Date_of_Birth: data['Date_of_Birth'],
-          //                   blood_group: data['blood_group'],
-          //                   gender: data['gender'],
-          //                   location: data['location'],
-          //                   name: data['name'],
-          //                   tel: data['tel'])
-          //               );
-          //         }).toList(),
-          //       );
-          //     },
-          //   ),
         ],
       ),
-
-      // StreamBuilder<QuerySnapshot>(
-      //   stream: donorStream,
-      //   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-      //     if (snapshot.hasError) {
-      //       return const Text('Something went wrong');
-      //     }
-
-      //     if (snapshot.connectionState == ConnectionState.waiting) {
-      //       return const Center(child: Text("Loading"));
-      //     }
-
-      //     return ListView(
-      //       children: snapshot.data!.docs.map((DocumentSnapshot document) {
-      //         Map<String, dynamic> data =
-      //             document.data()! as Map<String, dynamic>;
-      //         return Padding(
-      //           padding: const EdgeInsets.only(top: 10, bottom: 10),
-      //           child: ListTile(
-      //               shape: const RoundedRectangleBorder(
-      //                   borderRadius: BorderRadius.only(
-      //                       topLeft: Radius.circular(15),
-      //                       topRight: Radius.circular(15),
-      //                       bottomRight: Radius.circular(15),
-      //                       bottomLeft: Radius.circular(15))),
-      //               tileColor: Colors.blue[200],
-      //               leading: RichText(
-      //                   text: TextSpan(
-      //                       text: "${data['location']} \n",
-      //                       style: const TextStyle(color: Colors.black),
-      //                       children: [
-      //                     TextSpan(text: "  ${data['blood_group']}")
-      //                   ])),
-      //               title: Text(data['name']),
-      //               subtitle: RichText(
-      //                   text: TextSpan(
-      //                       text: "${data['gender']} \n",
-      //                       style: const TextStyle(color: Colors.black),
-      //                       children: [TextSpan(text: data['tel'])]))),
-      //         );
-      //       }).toList(),
-      //     );
-      //   },
-      // ),
 
       floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.add_event,

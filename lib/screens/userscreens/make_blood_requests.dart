@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:musayi/constants/color_pallete.dart';
@@ -57,7 +59,10 @@ class _RequestBloodState extends State<RequestBlood> {
     'A-',
     'B-',
     'O-',
-    'AB-'
+    'AB-',
+    'AB',
+    'A',
+    'B'
   ];
   String bloodAmount = '';
   String phone = '';

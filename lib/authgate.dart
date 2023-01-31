@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
-import 'package:musayi/screens/adminscreens/admin_home.dart';
 import 'package:musayi/screens/adminscreens/login.dart';
 import 'package:musayi/screens/userscreens/index.dart';
 
@@ -61,9 +60,6 @@ class AuthGate extends StatelessWidget {
             },
             providerConfigs: const [
               EmailProviderConfiguration(),
-              // GoogleProviderConfiguration(
-              //   clientId: '...',
-              // ),
             ],
           );
         }

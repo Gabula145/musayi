@@ -84,6 +84,7 @@ class _RegisterDonorState extends State<RegisterDonor> {
     Placemark placemark = placemarks[0];
     String completeAddress = '${placemark.locality}, ${placemark.subLocality},';
     locationCtrl.text = completeAddress;
+    // ignore: avoid_print
     print(completeAddress);
   }
 
