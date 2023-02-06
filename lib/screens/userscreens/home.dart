@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -234,12 +236,12 @@ class _HomeState extends State<Home> {
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
-                      return const Center(child: Text("Loading"));
+                      return const Center(child: CircularProgressIndicator());
                     }
                     List<ShowDonors> allDonors = [];
-                    for (var doc in snapshot.data!.docs) {
+                    snapshot.data!.docs.forEach((DocumentSnapshot doc) {
                       allDonors.add(ShowDonors.fromDocument(doc));
-                    }
+                    });
 
                     return SizedBox(
                       height: MediaQuery.of(context).size.height,
@@ -253,7 +255,6 @@ class _HomeState extends State<Home> {
                 ),
         ],
       ),
-
       floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.add_event,
         overlayColor: Colors.black,
