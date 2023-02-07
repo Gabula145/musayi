@@ -13,24 +13,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  var formkey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  bool _autovalidate = false;
-
-  void _submitForm() {
-    if (_formKey.currentState.validate()) {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => AdminHome()),
-          (route) => false);
-    } else {
-      setState(() {
-        _autovalidate = true;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -39,41 +24,57 @@ class _LoginState extends State<Login> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: size.height * 0.05),
-                const Text(
-                  "Admin Log in",
-                  textHeightBehavior: TextHeightBehavior(),
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                  ),
+          child: Form(
+        key: formkey,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: size.height * 0.05),
+              const Text(
+                "Admin Log in",
+                textHeightBehavior: TextHeightBehavior(),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
                 ),
-                SizedBox(height: size.height * 0.03),
-                Icon(
-                  Icons.verified_user_rounded,
-                  size: size.height * 0.35,
-                ),
-                SizedBox(height: size.height * 0.03),
-                RoundedInputField(
-                  icon: Icons.mail_outline_rounded,
-                  controller: emailController,
-                  hintText: "Your Email",
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return "Email is required";
-                    } else if (!RegExp(
-                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                        .hasMatch(value)) {
-                      return "Enter a valid email address";
-                    }
-                    return null;
-                  },
-                  autovalidate: _autovalidate,
-                ),
-                RoundedPassword
+              ),
+              SizedBox(height: size.height * 0.03),
+              Icon(
+                Icons.verified_user_rounded,
+                size: size.height * 0.35,
+              ),
+              SizedBox(height: size.height * 0.03),
+              RoundedInputField(
+                icon: Icons.mail_outline_rounded,
+                controller: emailController,
+                hintText: "Your Email",
+              ),
+              RoundedPasswordField(
+                controller: passwordController,
+                hintText: 'Your password',
+                onChanged: (String value) {},
+                label: 'Password',
+              ),
+              // forgotYourPasswordUI(),
+              RoundedButton(
+                text: "LOGIN",
+                press: () {
+                  if (formkey.currentState!.validate()) {
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: ((context) => const AdminHome())),
+                        (route) => true);
+                  }
+                },
+                color: kPrimaryColor,
+              ),
+              SizedBox(height: size.height * 0.03),
+            ],
+          ),
+        ),
+      )),
+    );
+  }
+
+}
