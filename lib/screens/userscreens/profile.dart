@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:musayi/authgate.dart';
 import 'package:musayi/widgets/rounded_button.dart';
-
 import '../../widgets/profile_tile.dart';
 
 class Profile extends StatefulWidget {
@@ -13,16 +12,37 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  FirebaseAuth signedin = FirebaseAuth.instance;
-  FirebaseAuth signout = FirebaseAuth.instance;
+  FirebaseAuth _auth = FirebaseAuth.instance;
 
-  signingout() async {
-    await signout.signOut();
+  @override
+  void initState() {
+    super.initState();
+    _getUserDetails();
   }
 
-  List user = [
-    {"name": "Email", "text": "${FirebaseAuth.instance.currentUser!.email}"},
-  ];
+  void _signOut() async {
+    await _auth.signOut();
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: ((context) => const AuthGate())),
+        (route) => true);
+  }
+
+  void _getUserDetails() async {
+    var user = _auth.currentUser;
+    if (user != null) {
+      var userDetails = {
+        "Name": user.displayName ?? "Not available",
+        "Email": user.email,
+        "Phone Number": user.phoneNumber ?? "Not available",
+      };
+      setState(() {
+        _userDetails = userDetails;
+      });
+    }
+  }
+
+  Map<String, String> _userDetails = {};
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -67,51 +87,3 @@ class _ProfileState extends State<Profile> {
                           foregroundImage:
                               const AssetImage("assets/images/demoLogo.png"),
                         ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.02,
-                      ),
-                      Text(
-                        "User: ${signedin.currentUser!.email.toString()}",
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.02,
-                      ),
-                      Column(
-                        children: List.generate(
-                          user.length,
-                          (index) => ProfileTile(
-                              padding: 20,
-                              label: user[index]['name'],
-                              value: user[index]['text']),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            top: size.height * 0.5,
-            child: RoundedButton(
-                text: "SignOut",
-                press: () {
-                  signingout();
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: ((context) => const AuthGate())),
-                      (route) => true);
-                },
-                color: Colors.red),
-          )
-        ]),
-      ),
-    );
-  }
-}
