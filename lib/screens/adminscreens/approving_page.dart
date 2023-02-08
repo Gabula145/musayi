@@ -79,8 +79,6 @@ fontWeight: FontWeight.normal),
 ]),
 ),
 ),
-
-              // 2nd
                         // 2nd
           SizedBox(
             // Set width to 90% of the screen width
