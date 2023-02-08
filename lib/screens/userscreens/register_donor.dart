@@ -7,6 +7,7 @@ import '../../constants/color_pallete.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
+// Class for creating the RegisterDonor widget 
 class RegisterDonor extends StatefulWidget {
   const RegisterDonor({Key? key}) : super(key: key);
 
@@ -14,12 +15,23 @@ class RegisterDonor extends StatefulWidget {
   State<RegisterDonor> createState() => _RegisterDonorState();
 }
 
+// State class for RegisterDonor
 class _RegisterDonorState extends State<RegisterDonor> {
+  // GlobalKey for form validation
   final formKey = GlobalKey<FormState>();
+
+  // Controller for date of birth field
   var dateOfBirth = TextEditingController();
+
+  // Controller for location field
   final locationCtrl = TextEditingController();
+
+  // Selected date
   DateTime selectedDate = DateTime.now();
+
+  // Method to decide which days to enable in the date picker
   bool _decideWhichDayToEnable(DateTime day) {
+    // Enable dates that are after today and before 20 days from now
     if ((day.isAfter(DateTime.now().subtract(const Duration(days: 1))) &&
         day.isBefore(DateTime.now().add(const Duration(days: 20))))) {
       return true;
@@ -27,6 +39,7 @@ class _RegisterDonorState extends State<RegisterDonor> {
     return false;
   }
 
+  // Method to select the date from the date picker
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -39,6 +52,7 @@ class _RegisterDonorState extends State<RegisterDonor> {
       confirmText: 'SET',
     );
 
+    // Set the selected date if a date was picked
     if (picked != null) {
       setState(() {
         selectedDate = picked;
@@ -47,10 +61,10 @@ class _RegisterDonorState extends State<RegisterDonor> {
     }
   }
 
-  // Initial Selected Value
+  // Initial Selected Value for gender field
   String genderType = 'Choose your sex';
 
-  // List of items in our dropdown menu
+  // List of items in the gender dropdown menu
   var genderItems = [
     'Choose your sex',
     'male',
@@ -58,7 +72,10 @@ class _RegisterDonorState extends State<RegisterDonor> {
     'other',
   ];
 
+  // Initial Selected Value for blood type field
   String bloodType = 'Blood Group';
+
+  // List of items in the blood type dropdown menu
   var bloodItems = [
     'Blood Group',
     'A+',
