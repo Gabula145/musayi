@@ -81,18 +81,22 @@ fontWeight: FontWeight.normal),
 ),
 
               // 2nd
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: Card(
-                  elevation: 10,
-                  child: Column(children: [
-                    Wrap(
-                      children: [
-                        const Text(
-                          "Blood Amount: ",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
+                        // 2nd
+          SizedBox(
+            // Set width to 90% of the screen width
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: Card(
+              elevation: 10,
+              child: Column(children: [
+                Wrap(
+                  children: [
+                    // Label for blood amount information
+                    const Text(
+                      "Blood Amount: ",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
