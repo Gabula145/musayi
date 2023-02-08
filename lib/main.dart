@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Set the title of the application.
+      // Set the title of the application
       title: 'Musayi',
-      // Set the theme of the application.
+      // Set the theme of the application
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
