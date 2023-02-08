@@ -239,7 +239,7 @@ class _HomeState extends State<Home> {
                       return const Center(child: CircularProgressIndicator());
                     }
                     List<ShowDonors> allDonors = [];
-                    snapshot.data.docs.forEach((DocumentSnapshot doc) {
+                    snapshot.data!.docs.forEach((DocumentSnapshot doc) {
                       allDonors.add(ShowDonors.fromDocument(doc));
                     });
 
